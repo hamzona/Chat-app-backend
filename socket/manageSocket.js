@@ -1,9 +1,5 @@
 const manageSocket = async (socket) => {
-  // console.log(socket.id);
-
-  //console.log(socket.handshake.query.nickname);
-
-  socket.join(socket.handshake.query.nickname);
+  socket.join(socket.handshake.query.id);
 
   socket.on("send-message", ({ recipients, message, nickname }) => {
     //console.log(data);
