@@ -13,13 +13,20 @@ mongoose.connection.on("connected", () => {
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(cors({ origin: ["http://localhost:3000"], credentials: true }));
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://chat-appf.onrender.com"],
+    credentials: true,
+  })
+);
 
 const http = require("http");
 const server = http.createServer(app);
 
 const io = require("socket.io")(server, {
-  cors: { origin: "http://localhost:3000" },
+  cors: {
+    origin: ["http://localhost:3000", "https://chat-appf.onrender.com"],
+  },
 });
 
 io.on("connection", require("./socket/manageSocket"));
