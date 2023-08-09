@@ -1,13 +1,9 @@
 const manageSocket = async (socket) => {
-  socket.join(socket.handshake.query.id);
+  const id = socket.handshake.query.id;
+  socket.join(id);
 
   socket.on("send-message", ({ recipients, message, nickname }) => {
-    //console.log(data);
-    recipients.forEach((recipient) => {
-      socket.broadcast
-        .to(recipient)
-        .emit("recive-message", { message, nickname });
-    });
+    socket.broadcast.to(id).emit("recive-message", { message, nickname });
   });
 };
 
