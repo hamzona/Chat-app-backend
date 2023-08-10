@@ -26,7 +26,7 @@ const hendleLogin = async (req, res) => {
       { nickname },
       process.env.REFRESH_TOKEN_SECRET,
       {
-        expiresIn: "30m",
+        expiresIn: "24h",
       }
     );
 
